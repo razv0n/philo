@@ -6,7 +6,7 @@
 /*   By: mfahmi <mfahmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:24:33 by mfahmi            #+#    #+#             */
-/*   Updated: 2025/07/29 14:41:42 by mfahmi           ###   ########.fr       */
+/*   Updated: 2025/07/30 23:26:37 by mfahmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ long	time_fun(void)
 
 void	print_action(char *action, t_threads *philo)
 {
+	usleep(50);
 	pthread_mutex_lock(&philo->info->print_lock);
 	pthread_mutex_lock(&philo->info->died_lock);
 	if (!philo->info->died)
@@ -48,10 +49,10 @@ void	print_action(char *action, t_threads *philo)
 	}
 	else if (philo->info->nm_philo % 2 != 0 && !ft_strcmp(action,
 			philo->info->str[THK]))
-        {
-            if (philo->philo_index % 2 && philo->info->tm_to_eat >= philo->info->tm_to_sleep)
+    	{
+            if (philo->info->tm_to_eat >= philo->info->tm_to_sleep)
                 usleep((philo->info->tm_to_eat - philo->info->tm_to_sleep + 5) * 1000);
-        } 
+        }
 }
 
 void	start_actions(t_threads *philo)
