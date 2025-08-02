@@ -6,7 +6,7 @@
 /*   By: mfahmi <mfahmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:17:27 by mfahmi            #+#    #+#             */
-/*   Updated: 2025/07/29 13:54:42 by mfahmi           ###   ########.fr       */
+/*   Updated: 2025/08/02 21:48:05 by mfahmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	clean_up_mutex(t_threads *philo)
 	}
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    t_info_all  info;
-	t_threads   *philo;
+	t_info_all info;
+	t_threads *philo;
 
 	memset(&info, 0, sizeof(t_info_all));
 	if (!start_pars(ac) || !init_info(ac, av, &info))

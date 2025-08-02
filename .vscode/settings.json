@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "text_encoding": "c",
+        "stdlib.h": "c",
+        "stdio.h": "c"
+    }
+}

@@ -6,7 +6,7 @@
 /*   By: mfahmi <mfahmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 19:33:24 by mfahmi            #+#    #+#             */
-/*   Updated: 2025/07/29 13:47:21 by mfahmi           ###   ########.fr       */
+/*   Updated: 2025/08/02 23:54:05 by mfahmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	put_fork(t_threads *philo)
 {
-	if (philo->philo_index == philo->info->nm_philo)
+	if (philo->philo_index % 2)
 	{
 		pthread_mutex_unlock(&philo->philo_info[philo->r_fork].fork);
 		pthread_mutex_unlock(&philo->philo_info[philo->l_fork].fork);
@@ -28,19 +28,19 @@ void	put_fork(t_threads *philo)
 
 void	take_fork(t_threads *philo)
 {
-	if (philo->philo_index == philo->info->nm_philo)
+	if (philo->philo_index % 2)
 	{
 		pthread_mutex_lock(&philo->philo_info[philo->r_fork].fork);
-		print_action(philo->info->str[TAK], philo);
+		print_do_action(philo->info->str[TAK], philo);
 		pthread_mutex_lock(&philo->philo_info[philo->l_fork].fork);
-		print_action(philo->info->str[TAK], philo);
+		print_do_action(philo->info->str[TAK], philo);
 	}
 	else
 	{
 		pthread_mutex_lock(&philo->philo_info[philo->l_fork].fork);
-		print_action(philo->info->str[TAK], philo);
+		print_do_action(philo->info->str[TAK], philo);
 		pthread_mutex_lock(&philo->philo_info[philo->r_fork].fork);
-		print_action(philo->info->str[TAK], philo);
+		print_do_action(philo->info->str[TAK], philo);
 	}
 }
 
@@ -56,12 +56,12 @@ e_return	start_philo_2(t_threads *philo)
 	int	i;
 
 	i = 0;
-	philo->info->start_time = time_fun();
 	while (i < philo->info->nm_philo)
 	{
 		init_forks(philo, i);
 		i++;
 	}
+	philo->info->start_time = time_fun();
 	if (run_philo(philo) == FAIL)
 		return (FAIL);
 	if (wait_philo(philo) == FAIL)
@@ -119,7 +119,6 @@ t_threads	*start_philo(t_info_all *info)
 		}
 		i++;
 	}
-	if (start_philo_2(&philo) == FAIL)
-		return (philo.philo_info);
+	start_philo_2(&philo);
 	return (philo.philo_info);
 }

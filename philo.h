@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfahmi <mfahmi@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/03 00:54:16 by mfahmi            #+#    #+#             */
+/*   Updated: 2025/08/03 00:54:54 by mfahmi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 # include <pthread.h>
@@ -10,7 +22,7 @@
 # include <unistd.h>
 # define ARG_ERR "number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]"
 
-typedef enum
+typedef enum e_action
 {
 	EAT,
 	SLP,
@@ -19,7 +31,7 @@ typedef enum
 	TAK
 }					e_action;
 
-typedef enum
+typedef enum e_return
 {
 	FAIL = 0,
 	SUCCESS,
@@ -68,11 +80,14 @@ e_return(run_philo(t_threads *philo));
 void				*monitor_fun(void *ptr_philo);
 void				*routine(void *s);
 bool				start_pars(int ac);
-void				print_action(char *action, t_threads *philo);
+void				print_do_action(char *action, t_threads *philo);
 bool				init_info(int ac, char **av, t_info_all *info);
 void				take_fork(t_threads *philo);
 void				put_fork(t_threads *philo);
 int					ft_strcmp(char *str1, char *str2);
 long				time_fun(void);
+void				philo_eating(char *action, t_threads *philo);
+void				philo_thinking(char *action, t_threads *philo);
+void				philo_sleeping(char *action, t_threads *philo);
 
 #endif

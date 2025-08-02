@@ -1,5 +1,5 @@
 NAME = philo
-FUN = main.c routine.c pars.c start_philo.c monitor.c help_start.c
+FUN = main.c routine.c pars.c start_philo.c actions_monitor.c help_start.c
 OBJ = $(FUN:.c=.o)
 CC = cc -g3
 CFLAGS = -Wall -Wextra -Werror 
