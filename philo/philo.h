@@ -6,7 +6,7 @@
 /*   By: mfahmi <mfahmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 00:54:16 by mfahmi            #+#    #+#             */
-/*   Updated: 2025/08/03 00:54:54 by mfahmi           ###   ########.fr       */
+/*   Updated: 2025/08/03 16:11:19 by mfahmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,26 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-# include <sys/time.h> // dont forget to remove unsed header file
-# include <ulimit.h>
 # include <unistd.h>
-# define ARG_ERR "number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]"
+# include <sys/time.h> // dont forget to remove unsed header file
+# define ARG_ERR "number_of_philosophers \
+time_to_die time_to_eat time_to_sleep \
+[number_of_times_each_philosopher_must_eat]"
 
-typedef enum e_action
+typedef enum t_action
 {
 	EAT,
 	SLP,
 	DEID,
 	THK,
 	TAK
-}					e_action;
+}					t_action;
 
-typedef enum e_return
+typedef enum t_return
 {
 	FAIL = 0,
 	SUCCESS,
-} e_return ;
+}					t_return;
 
 typedef struct t_info
 {
@@ -75,8 +76,9 @@ typedef struct thread
 
 t_threads			*start_philo(t_info_all *info);
 void				init_strings(t_info_all *info);
-e_return(wait_philo(t_threads *philo));
-e_return(run_philo(t_threads *philo));
+t_return			wait_philo(t_threads *philo);
+t_return			run_philo(t_threads *philo);
+void				init_forks(t_threads *philo, int i);
 void				*monitor_fun(void *ptr_philo);
 void				*routine(void *s);
 bool				start_pars(int ac);

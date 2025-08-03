@@ -6,7 +6,7 @@
 /*   By: mfahmi <mfahmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:17:27 by mfahmi            #+#    #+#             */
-/*   Updated: 2025/08/02 23:36:31 by mfahmi           ###   ########.fr       */
+/*   Updated: 2025/08/03 14:59:28 by mfahmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,7 @@ bool	init_info(int ac, char **av, t_info_all *info)
 	int	i;
 
 	i = 0;
-	info->nm_philo = -1;
-	info->tm_to_die = -1;
-	info->tm_to_eat = -1;
 	info->nm_meals = -1;
-	info->tm_to_sleep = -1; //! i think this is not needed
 	info->nm_philo = ft_atol(av[1]);
 	info->tm_to_die = ft_atol(av[2]);
 	info->tm_to_eat = ft_atol(av[3]);

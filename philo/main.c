@@ -6,11 +6,17 @@
 /*   By: mfahmi <mfahmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:17:27 by mfahmi            #+#    #+#             */
-/*   Updated: 2025/08/02 21:48:05 by mfahmi           ###   ########.fr       */
+/*   Updated: 2025/08/03 14:13:10 by mfahmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	philo_sleeping(char *action, t_threads *philo)
+{
+	if (!ft_strcmp(action, philo->info->str[SLP]))
+		usleep(philo->info->tm_to_sleep * 1000);
+}
 
 void	one_philo(t_info_all *info)
 {
@@ -43,8 +49,8 @@ void	clean_up_mutex(t_threads *philo)
 
 int	main(int ac, char **av)
 {
-	t_info_all info;
-	t_threads *philo;
+	t_info_all	info;
+	t_threads	*philo;
 
 	memset(&info, 0, sizeof(t_info_all));
 	if (!start_pars(ac) || !init_info(ac, av, &info))

@@ -6,13 +6,13 @@
 /*   By: mfahmi <mfahmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:21:25 by mfahmi            #+#    #+#             */
-/*   Updated: 2025/07/28 19:01:08 by mfahmi           ###   ########.fr       */
+/*   Updated: 2025/08/03 14:15:17 by mfahmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-e_return	run_philo(t_threads *philo)
+t_return	run_philo(t_threads *philo)
 {
 	int	i;
 
@@ -31,7 +31,7 @@ e_return	run_philo(t_threads *philo)
 	return (SUCCESS);
 }
 
-e_return	wait_philo(t_threads *philo)
+t_return	wait_philo(t_threads *philo)
 {
 	int	i;
 
@@ -49,7 +49,7 @@ e_return	wait_philo(t_threads *philo)
 
 int	ft_strcmp(char *str1, char *str2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str1 || !str2)

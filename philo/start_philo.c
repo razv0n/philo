@@ -6,7 +6,7 @@
 /*   By: mfahmi <mfahmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 19:33:24 by mfahmi            #+#    #+#             */
-/*   Updated: 2025/08/02 23:54:05 by mfahmi           ###   ########.fr       */
+/*   Updated: 2025/08/03 15:04:26 by mfahmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,7 @@ void	take_fork(t_threads *philo)
 	}
 }
 
-void	init_forks(t_threads *philo, int i)
-{
-	philo->philo_info[i].l_fork = philo->philo_info[i].philo_index - 1;
-	philo->philo_info[i].r_fork = philo->philo_info[(i + 1)
-		% philo->info->nm_philo].philo_index - 1;
-}
-
-e_return	start_philo_2(t_threads *philo)
+t_return	start_philo_2(t_threads *philo)
 {
 	int	i;
 

@@ -6,24 +6,48 @@
 /*   By: mfahmi <mfahmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:24:33 by mfahmi            #+#    #+#             */
-/*   Updated: 2025/08/02 23:55:08 by mfahmi           ###   ########.fr       */
+/*   Updated: 2025/08/03 15:26:33 by mfahmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long	time_fun(void)
+void	philo_eating(char *action, t_threads *philo)
 {
-	struct timeval	time;
+	if (!ft_strcmp(action, philo->info->str[EAT]))
+	{
+		if (philo->info->nm_meals != -1)
+		{
+			pthread_mutex_lock(&philo->info->meal_lock);
+			if (philo->eat_meal != -1)
+				philo->eat_meal++;
+			pthread_mutex_unlock(&philo->info->meal_lock);
+		}
+		pthread_mutex_lock(&philo->info->access_lock);
+		philo->last_meal = time_fun();
+		pthread_mutex_unlock(&philo->info->access_lock);
+		usleep(philo->info->tm_to_eat * 1000);
+	}
+}
 
-	if (gettimeofday(&time, NULL))
-		return (-1);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+void	philo_thinking(char *action, t_threads *philo)
+{
+	if (philo->info->nm_philo % 2 != 0 && !ft_strcmp(action,
+			philo->info->str[THK]))
+	{
+		if (philo->info->tm_to_eat > philo->info->tm_to_sleep)
+			usleep((philo->info->tm_to_eat - philo->info->tm_to_sleep + 100)
+				* 1000);
+		else if (philo->info->tm_to_eat <= philo->info->tm_to_sleep)
+			usleep(((philo->info->tm_to_eat * 2) - philo->info->tm_to_sleep)
+				* 1000);
+	}
+	else
+		usleep(70);
 }
 
 void	print_do_action(char *action, t_threads *philo)
 {
-	usleep(10); // it not works if the simulation was like this 31 601 200 200
 	pthread_mutex_lock(&philo->info->print_lock);
 	pthread_mutex_lock(&philo->info->died_lock);
 	if (!philo->info->died)

@@ -1,7 +1,7 @@
 NAME = philo
 FUN = main.c routine.c pars.c start_philo.c actions_monitor.c help_start.c
 OBJ = $(FUN:.c=.o)
-CC = cc -g3
+CC = cc
 CFLAGS = -Wall -Wextra -Werror 
 
 all: $(NAME)
